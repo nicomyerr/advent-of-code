@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class Day01 {
 
+  // TODO: refactoring
+
   public static void main(String[] args) {
     final String fileName = (args.length > 0) ? args[0] : "test-input.txt";
     final Dial dial = new Dial();
@@ -12,7 +14,8 @@ public class Day01 {
       br.lines().forEach(line -> {
         dial.turn(line);
       });
-      System.out.println("The password is %d.".formatted(dial.zerosCount));
+      System.out.println("The password for part one is %d.".formatted(dial.partOneCounter));
+      System.out.println("The password for part two is %d.".formatted(dial.partTwoCounter));
     } catch (IOException e) {
       System.out.println("Input file not found.");
     }
@@ -24,7 +27,8 @@ public class Day01 {
 
     private int position;
 
-    private int zerosCount;
+    private int partOneCounter;
+    private int partTwoCounter;
 
     private Dial() {
       this.position = 50;
@@ -45,6 +49,9 @@ public class Day01 {
       int tmpPosition = this.position;
       while (amount > 0) {
         tmpPosition--;
+        if (tmpPosition == MIN_POSITION) {
+          partTwoCounter++;
+        }
         if (tmpPosition < MIN_POSITION) {
           tmpPosition = MAX_POSITION;
         }
@@ -52,7 +59,7 @@ public class Day01 {
       }
       this.position = tmpPosition;
       if (this.position == 0) {
-        this.zerosCount++;
+        this.partOneCounter++;
       }
     }
 
@@ -62,12 +69,13 @@ public class Day01 {
         tmpPosition++;
         if (tmpPosition > MAX_POSITION) {
           tmpPosition = MIN_POSITION;
+          partTwoCounter++;
         }
         amount--;
       }
       this.position = tmpPosition;
       if (this.position == 0) {
-        this.zerosCount++;
+        this.partOneCounter++;
       }
     }
   }
