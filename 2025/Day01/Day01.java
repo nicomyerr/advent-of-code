@@ -33,29 +33,20 @@ public class Day01 {
     }
 
     private void turn(final String rotation) {
-      rotate(
-          rotation.charAt(0) == 'L' ? -1 : 1,
-          Integer.parseInt(rotation.substring(1)));
-      System.out.println("The dial is rotated %s to point at %d.".formatted(rotation, position));
-    }
+      final int direction = rotation.charAt(0) == 'L' ? -1 : 1;
+      final int amount = Integer.parseInt(rotation.substring(1));
 
-    private void rotate(final int direction, final int amount) {
-      int tmpPosition = position;
       for (int i = 0; i < amount; i++) {
-        tmpPosition += direction;
-        if (tmpPosition < 0) {
-          tmpPosition = DIAL_SIZE - 1;
-        } else if (tmpPosition >= DIAL_SIZE) {
-          tmpPosition = 0;
-        }
-        if (tmpPosition == 0) {
+        position = (position + direction + DIAL_SIZE) % DIAL_SIZE;
+        if (position == 0) {
           partTwoCounter++;
         }
       }
-      position = tmpPosition;
+
       if (position == 0) {
         partOneCounter++;
       }
+      System.out.println("The dial is rotated %s to point at %d.".formatted(rotation, position));
     }
   }
 }
