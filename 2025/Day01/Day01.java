@@ -20,52 +20,37 @@ public class Day01 {
   }
 
   private static class Dial {
-    private int position;
+    private static final int START_POSITION = 50;
+    private static final int DIAL_SIZE = 100;
 
+    private int position;
     private int partOneCounter;
     private int partTwoCounter;
 
     private Dial() {
-      position = 50;
+      position = START_POSITION;
       System.out.println("The dial starts by pointing at %d.".formatted(position));
     }
 
     private void turn(final String rotation) {
-      switch (rotation.charAt(0)) {
-        case 'L' -> turnLeft(Integer.parseInt(rotation.substring(1)));
-        case 'R' -> turnRight(Integer.parseInt(rotation.substring(1)));
-        default -> throw new IllegalArgumentException("Invalid rotation: " + rotation);
-      }
+      rotate(
+          rotation.charAt(0) == 'L' ? -1 : 1,
+          Integer.parseInt(rotation.substring(1)));
       System.out.println("The dial is rotated %s to point at %d.".formatted(rotation, position));
     }
 
-    private void turnLeft(int amount) {
+    private void rotate(final int direction, final int amount) {
       int tmpPosition = position;
-      while (amount > 0) {
-        tmpPosition--;
+      for (int i = 0; i < amount; i++) {
+        tmpPosition += direction;
+        if (tmpPosition < 0) {
+          tmpPosition = DIAL_SIZE - 1;
+        } else if (tmpPosition >= DIAL_SIZE) {
+          tmpPosition = 0;
+        }
         if (tmpPosition == 0) {
           partTwoCounter++;
         }
-        if (tmpPosition < 0) {
-          tmpPosition = 99;
-        }
-        amount--;
-      }
-      position = tmpPosition;
-      if (position == 0) {
-        partOneCounter++;
-      }
-    }
-
-    private void turnRight(int amount) {
-      int tmpPosition = position;
-      while (amount > 0) {
-        tmpPosition++;
-        if (tmpPosition > 99) {
-          tmpPosition = 0;
-          partTwoCounter++;
-        }
-        amount--;
       }
       position = tmpPosition;
       if (position == 0) {
