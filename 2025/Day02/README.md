@@ -1,6 +1,6 @@
-# 2025 - Day 02
+# [Day 2: Gift Shop](https://adventofcode.com/2025/day/2)
 
-To execute the solution for day 02:
+To execute the solution for day 2:
 
 - Download the input from [here](https://adventofcode.com/2025/day/2/input)
 - Save it as e.g. `input.txt` in the [resources](resources/) folder

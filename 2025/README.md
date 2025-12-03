@@ -1,9 +1,9 @@
-# 2025
+# [2025](https://adventofcode.com/2025)
 
-My first year solving Advent of Code problems in Java.
+My first year solving Advent of Code problems in Java \o/.
 
 | days | comments |
 |------|----------|
-| [Day 01](./Day01/README.md) | First AoC problem ever |
-| [Day 02](./Day02/README.md) | |
-| [Day 03](./Day03/README.md) | |
+| [Day 1](./Day01/README.md) | First AoC problem ever |
+| [Day 2](./Day02/README.md) | |
+| [Day 3](./Day03/README.md) | |

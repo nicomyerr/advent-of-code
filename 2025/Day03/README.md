@@ -1,6 +1,6 @@
-# 2025 - Day 03
+# [Day 3: Lobby](https://adventofcode.com/2025/day/3)
 
-To execute the solution for day 03:
+To execute the solution for day 3:
 
 - Download the input from [here](https://adventofcode.com/2025/day/3/input)
 - Save it as e.g. `input.txt` in the [resources](resources/) folder

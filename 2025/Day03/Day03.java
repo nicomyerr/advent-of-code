@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class Day03 {
 
+  // TODO: implement solution for part 2
+
   public static void main(String[] args) {
     final String fileName = (args.length > 0) ? args[0] : "test-input.txt";
     try (final BufferedReader br = new BufferedReader(
