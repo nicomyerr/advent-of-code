@@ -31,9 +31,16 @@ public class Day02 {
 
   private static boolean isInvalid(final String id) {
     final int length = id.length();
-    if (length % 2 != 0) {
-      return false;
+    for (int patternLength = 1; patternLength <= length / 2; patternLength++) {
+      if (length % patternLength == 0) {
+        final String pattern = id.substring(0, patternLength);
+        final String repeated = pattern.repeat(length / patternLength);
+        if (id.equals(repeated)) {
+          System.out.println("Invalid ID found: %s".formatted(id));
+          return true;
+        }
+      }
     }
-    return id.substring(0, length / 2).equals(id.substring(length / 2));
+    return false;
   }
 }
