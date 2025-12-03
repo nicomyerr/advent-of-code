@@ -4,8 +4,6 @@ import java.io.IOException;
 
 public class Day01 {
 
-  // TODO: refactoring
-
   public static void main(String[] args) {
     final String fileName = (args.length > 0) ? args[0] : "test-input.txt";
     final Dial dial = new Dial();
@@ -22,60 +20,56 @@ public class Day01 {
   }
 
   private static class Dial {
-    private static final int MAX_POSITION = 99;
-    private static final int MIN_POSITION = 0;
-
     private int position;
 
     private int partOneCounter;
     private int partTwoCounter;
 
     private Dial() {
-      this.position = 50;
-      System.out.println("The dial starts by pointing at %d.".formatted(this.position));
+      position = 50;
+      System.out.println("The dial starts by pointing at %d.".formatted(position));
     }
 
     private void turn(final String rotation) {
-      final char direction = rotation.charAt(0);
-      switch (direction) {
+      switch (rotation.charAt(0)) {
         case 'L' -> turnLeft(Integer.parseInt(rotation.substring(1)));
         case 'R' -> turnRight(Integer.parseInt(rotation.substring(1)));
         default -> throw new IllegalArgumentException("Invalid rotation: " + rotation);
       }
-      System.out.println("The dial is rotated %s to point at %d.".formatted(rotation, this.position));
+      System.out.println("The dial is rotated %s to point at %d.".formatted(rotation, position));
     }
 
     private void turnLeft(int amount) {
-      int tmpPosition = this.position;
+      int tmpPosition = position;
       while (amount > 0) {
         tmpPosition--;
-        if (tmpPosition == MIN_POSITION) {
+        if (tmpPosition == 0) {
           partTwoCounter++;
         }
-        if (tmpPosition < MIN_POSITION) {
-          tmpPosition = MAX_POSITION;
+        if (tmpPosition < 0) {
+          tmpPosition = 99;
         }
         amount--;
       }
-      this.position = tmpPosition;
-      if (this.position == 0) {
-        this.partOneCounter++;
+      position = tmpPosition;
+      if (position == 0) {
+        partOneCounter++;
       }
     }
 
     private void turnRight(int amount) {
-      int tmpPosition = this.position;
+      int tmpPosition = position;
       while (amount > 0) {
         tmpPosition++;
-        if (tmpPosition > MAX_POSITION) {
-          tmpPosition = MIN_POSITION;
+        if (tmpPosition > 99) {
+          tmpPosition = 0;
           partTwoCounter++;
         }
         amount--;
       }
-      this.position = tmpPosition;
-      if (this.position == 0) {
-        this.partOneCounter++;
+      position = tmpPosition;
+      if (position == 0) {
+        partOneCounter++;
       }
     }
   }
