@@ -1,54 +1,24 @@
 package aoc.Year2025.Day01;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List;
 
-public class Day01 {
+import aoc.Day;
 
-  public static void main(String[] args) {
-    final String fileName = (args.length > 0) ? args[0] : "test-input.txt";
-    final Dial dial = new Dial();
-    try (final BufferedReader br = new BufferedReader(
-        new FileReader("2025/Day01/resources/%s".formatted(fileName)))) {
-      br.lines().forEach(line -> {
-        dial.turn(line);
-      });
-      System.out.println("The password for part one is %d.".formatted(dial.partOneCounter));
-      System.out.println("The password for part two is %d.".formatted(dial.partTwoCounter));
-    } catch (IOException e) {
-      System.out.println("Input file not found.");
-    }
+public class Day01 implements Day {
+
+  @Override
+  public String solveFirstPart(final List<String> input) {
+    return "%d".formatted(createDialAndTurn(input).getPartOneCounter());
   }
 
-  private static class Dial {
-    private static final int START_POSITION = 50;
-    private static final int DIAL_SIZE = 100;
+  @Override
+  public String solveSecondPart(final List<String> input) {
+    return "%d".formatted(createDialAndTurn(input).getPartTwoCounter());
+  }
 
-    private int position;
-    private int partOneCounter;
-    private int partTwoCounter;
-
-    private Dial() {
-      position = START_POSITION;
-      System.out.println("The dial starts by pointing at %d.".formatted(position));
-    }
-
-    private void turn(final String rotation) {
-      final int direction = rotation.charAt(0) == 'L' ? -1 : 1;
-      final int amount = Integer.parseInt(rotation.substring(1));
-
-      for (int i = 0; i < amount; i++) {
-        position = (position + direction + DIAL_SIZE) % DIAL_SIZE;
-        if (position == 0) {
-          partTwoCounter++;
-        }
-      }
-
-      if (position == 0) {
-        partOneCounter++;
-      }
-      System.out.println("The dial is rotated %s to point at %d.".formatted(rotation, position));
-    }
+  private static Dial createDialAndTurn(final List<String> input) {
+    final Dial dial = new Dial();
+    input.forEach(rotation -> dial.turn(rotation));
+    return dial;
   }
 }

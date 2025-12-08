@@ -1,13 +1,17 @@
 # [Day 1: Secret Entrance](https://adventofcode.com/2025/day/1)
 
-To execute the solution for day 1:
+My first AoC puzzle ever \o/.
 
-- Download the input from [here](https://adventofcode.com/2025/day/1/input)
-- Save it as e.g. `input.txt` in the [resources](resources/) folder
-- Run the following command in the terminal
+## Thoughts
 
-  ```bash
-  java 2025/Day01/Day01.java input.txt
-  ```
+The solution is pretty straight forward in my opinion although the modulo thingy wasn't on my mind when implementing something like this puzzle requires (e.g. a Dial from 0 to 99).
 
-- If no argument is passed the program will use [test-input.txt](resources/test-input.txt)
+I will keep this in mind.
+
+## Design
+
+I simply implemented [Dial](Dial.java) with a corresponding method `turn` which turns the Dial according to the given rotation notation (e.g. `L1` or `R2`). The constructor of this class sets the position to the given starting point which is `50`.
+
+## Explanation
+
+TODO
