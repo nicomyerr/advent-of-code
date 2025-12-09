@@ -1,22 +1,20 @@
 package aoc.Year2025.Day03;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List;
 
-public class Day03 {
+import aoc.Day;
 
-  // TODO: implement solution for part 2
+public class Day03 implements Day {
 
-  public static void main(String[] args) {
-    final String fileName = (args.length > 0) ? args[0] : "test-input.txt";
-    try (final BufferedReader br = new BufferedReader(
-        new FileReader("2025/Day03/resources/%s".formatted(fileName)))) {
-      final int totalOutputJoltage = br.lines().map(Day03::maxJoltage).mapToInt(Integer::valueOf).sum();
-      System.out.println("The highest total ouput joltage is %d.".formatted(totalOutputJoltage));
-    } catch (IOException e) {
-      System.out.println("Input file not found.");
-    }
+  @Override
+  public String solveFirstPart(final List<String> input) {
+    return String.valueOf(input.stream().map(Day03::maxJoltage).mapToInt(Integer::valueOf).sum());
+  }
+
+  @Override
+  public String solveSecondPart(final List<String> input) {
+    // TODO: implementation for part 2
+    return "42";
   }
 
   private static int maxJoltage(final String bank) {
@@ -29,7 +27,6 @@ public class Day03 {
         }
       }
     }
-    System.out.println("Max joltage for bank %s is %d.".formatted(bank, maxJoltage));
     return maxJoltage;
   }
 }
