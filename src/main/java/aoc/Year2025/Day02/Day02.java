@@ -1,26 +1,26 @@
 package aoc.Year2025.Day02;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List;
 import java.util.stream.LongStream;
 
-public class Day02 {
+import aoc.Day;
 
-  public static void main(String[] args) {
-    final String fileName = (args.length > 0) ? args[0] : "test-input.txt";
-    try (final BufferedReader br = new BufferedReader(
-        new FileReader("2025/Day02/resources/%s".formatted(fileName)))) {
-      System.out.println("The sum of invalid IDs is %d.".formatted(sumOfInvalidIds(br.lines().toList().getFirst())));
-    } catch (IOException e) {
-      System.out.println("Input file not found.");
-    }
+public class Day02 implements Day {
+
+  @Override
+  public String solveFirstPart(final List<String> input) {
+    // TODO: implementation for part 1
+    return "42";
+  }
+
+  @Override
+  public String solveSecondPart(final List<String> input) {
+    return String.valueOf(sumOfInvalidIds(input.getFirst()));
   }
 
   private static long sumOfInvalidIds(final String ranges) {
     long sum = 0;
     for (final String range : ranges.split(",")) {
-      System.out.println("Processing range: %s".formatted(range));
       final String[] bounds = range.split("-");
       sum += LongStream.rangeClosed(Long.parseLong(bounds[0]), Long.parseLong(bounds[1]))
           .mapToObj(String::valueOf)
@@ -38,7 +38,6 @@ public class Day02 {
         final String pattern = id.substring(0, patternLength);
         final String repeated = pattern.repeat(length / patternLength);
         if (id.equals(repeated)) {
-          System.out.println("Invalid ID found: %s".formatted(id));
           return true;
         }
       }
