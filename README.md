@@ -13,7 +13,7 @@ Solutions for AoC puzzles written in Java.
 - Run the following command in the terminal (e.g. for year 2025 day 01 part 1)
 
   ```bash
-  java src/main/java/aoc/Aoc.java 2025 01 1 input.txt
+  ./gradlew run --args='2025 01 1 input.txt'
   ```
 
 - If no argument is passed the program will use `test-input.txt`
