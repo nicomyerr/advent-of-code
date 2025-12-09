@@ -6,15 +6,19 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileUtils {
 
-  final static String PATH = "src/main/java/aoc/Year%s/Day%s/resources/%s";
+  public final static String PATH = "src/main/java/aoc/Year%s/Day%s/resources/%s";
 
-  public static List<String> readInput(final String year, final String day, final String fileName) {
-    try (final BufferedReader br = new BufferedReader(new FileReader(PATH.formatted(year, day, fileName)))) {
-      return br.lines().toList();
+  public static List<String> readInput(final String filePath) {
+    try (final BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+      return br.lines().filter(line -> !line.isBlank()).toList();
     } catch (final IOException e) {
-      System.err.println("Input file '%s' not found for year '%s' and day '%s'".formatted(fileName, year, day));
+      System.err.println("Error reading file '%s': %s".formatted(filePath, e.getMessage()));
     }
     return Collections.emptyList();
   }

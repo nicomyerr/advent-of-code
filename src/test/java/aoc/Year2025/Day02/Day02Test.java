@@ -13,7 +13,7 @@ public class Day02Test {
   void solveFirstPart() {
     // given
     final Day02 day02 = new Day02();
-    final List<String> testInput = FileUtils.readInput("2025", "02", "test-input.txt");
+    final List<String> testInput = FileUtils.readInput(FileUtils.PATH.formatted("2025", "02", "test-input.txt"));
     // when
     final String result = day02.solveFirstPart(testInput);
     // then
@@ -24,7 +24,7 @@ public class Day02Test {
   void solveSecondPart() {
     // given
     final Day02 day02 = new Day02();
-    final List<String> testInput = FileUtils.readInput("2025", "02", "test-input.txt");
+    final List<String> testInput = FileUtils.readInput(FileUtils.PATH.formatted("2025", "02", "test-input.txt"));
     // when
     final String result = day02.solveSecondPart(testInput);
     // then
